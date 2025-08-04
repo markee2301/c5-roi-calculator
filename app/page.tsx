@@ -1,103 +1,140 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [frequencyPerWeek, setFrequencyPerWeek] = useState(1);
+  const [weeksInCarePlan, setWeeksInCarePlan] = useState(12);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  // Calculate derived values
+  const phase1SessionsNeeded = frequencyPerWeek * weeksInCarePlan;
+  const aLaCartePerMonth = (phase1SessionsNeeded * 250) / (weeksInCarePlan / 4);
+  const signatureMonthly = Math.max(
+    0,
+    (phase1SessionsNeeded / (weeksInCarePlan / 4) - 1) * 150
+  );
+  const eliteMonthly = Math.max(
+    0,
+    (phase1SessionsNeeded / (weeksInCarePlan / 4) - 5) * 150
+  );
+  const platinumTotal = phase1SessionsNeeded * 3500; // Assuming $3500 per session for Platinum
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-8">
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            Club Five Health ROI Calculator
+          </h1>
+          <p className="text-gray-600">
+            Calculate your return on investment for health services
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Calculator */}
+        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="bg-gray-800 text-white px-6 py-4">
+            <h2 className="text-2xl font-bold">Phase 1: Relief</h2>
+          </div>
+
+          <div className="p-6">
+            <div className="space-y-4">
+              {/* Input Fields - Yellow Background */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-yellow-100 p-4 rounded-lg border-2 border-yellow-300">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Frequency per week
+                  </label>
+                  <input
+                    type="number"
+                    value={frequencyPerWeek}
+                    onChange={(e) =>
+                      setFrequencyPerWeek(Number(e.target.value))
+                    }
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    min="0"
+                  />
+                </div>
+
+                <div className="bg-yellow-100 p-4 rounded-lg border-2 border-yellow-300">
+                  <label className="block text-sm font-bold text-gray-700 mb-2">
+                    Weeks in care plan
+                  </label>
+                  <input
+                    type="number"
+                    value={weeksInCarePlan}
+                    onChange={(e) => setWeeksInCarePlan(Number(e.target.value))}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
+                    min="0"
+                  />
+                </div>
+              </div>
+
+              {/* Spacer */}
+              <div className="h-4"></div>
+
+              {/* Calculated Values */}
+              <div className="space-y-3">
+                <div className="bg-white p-4 rounded-lg border border-gray-200">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-gray-900">
+                      Phase 1 Sessions Needed
+                    </span>
+                    <span className="text-lg font-semibold text-gray-900">
+                      {phase1SessionsNeeded}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-gray-900">
+                      À la Carte/mo
+                    </span>
+                    <span className="text-lg font-semibold text-gray-900">
+                      ${aLaCartePerMonth.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-gray-900">
+                      Signature Monthly
+                    </span>
+                    <span className="text-lg font-semibold text-gray-900">
+                      ${signatureMonthly.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-gray-900">
+                      Elite Monthly
+                    </span>
+                    <span className="text-lg font-semibold text-gray-900">
+                      ${eliteMonthly.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="bg-gray-100 p-4 rounded-lg">
+                  <div className="flex justify-between items-center">
+                    <span className="font-bold text-gray-900">
+                      Platinum Total
+                    </span>
+                    <span className="text-lg font-semibold text-gray-900">
+                      ${platinumTotal.toLocaleString()}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
