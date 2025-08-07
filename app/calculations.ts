@@ -1,0 +1,87 @@
+export interface CalculatorInputs {
+  frequencyPerWeek: number;
+  weeksInCarePlan: number;
+}
+
+export interface CalculatorOutputs {
+  sessionsNeeded: number;
+  aLaCartePerMonth: number;
+  signatureMonthly: number;
+  eliteMonthly: number;
+  platinumTotal: number;
+}
+
+export function calculatePhase1(inputs: CalculatorInputs): CalculatorOutputs {
+  const { frequencyPerWeek, weeksInCarePlan } = inputs;
+
+  const sessionsNeeded = frequencyPerWeek * weeksInCarePlan;
+  const aLaCartePerMonth =
+    weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
+  const signatureMonthly = Math.max(
+    0,
+    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 1) * 150 : 0
+  );
+  const eliteMonthly = Math.max(
+    0,
+    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 5) * 150 : 0
+  );
+  const platinumTotal = 42000; // Static value
+
+  return {
+    sessionsNeeded,
+    aLaCartePerMonth,
+    signatureMonthly,
+    eliteMonthly,
+    platinumTotal,
+  };
+}
+
+export function calculatePhase2(inputs: CalculatorInputs): CalculatorOutputs {
+  const { frequencyPerWeek, weeksInCarePlan } = inputs;
+
+  const sessionsNeeded = frequencyPerWeek * weeksInCarePlan;
+  const aLaCartePerMonth =
+    weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
+  const signatureMonthly = Math.max(
+    0,
+    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 1) * 150 : 0
+  );
+  const eliteMonthly = Math.max(
+    0,
+    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 5) * 150 : 0
+  );
+  const platinumTotal = 42000; // Static value
+
+  return {
+    sessionsNeeded,
+    aLaCartePerMonth,
+    signatureMonthly,
+    eliteMonthly,
+    platinumTotal,
+  };
+}
+
+export function calculatePhase3(inputs: CalculatorInputs): CalculatorOutputs {
+  const { frequencyPerWeek, weeksInCarePlan } = inputs;
+
+  const sessionsNeeded = frequencyPerWeek * weeksInCarePlan;
+  const aLaCartePerMonth =
+    weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
+  const signatureMonthly = Math.max(
+    0,
+    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 1) * 150 : 0
+  );
+  const eliteMonthly = Math.max(
+    0,
+    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 5) * 150 : 0
+  );
+  const platinumTotal = 42000; // Static value
+
+  return {
+    sessionsNeeded,
+    aLaCartePerMonth,
+    signatureMonthly,
+    eliteMonthly,
+    platinumTotal,
+  };
+}
