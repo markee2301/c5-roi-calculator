@@ -84,31 +84,36 @@ export default function Home() {
   const shouldHighlightElite = totalWeeks >= 60;
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
+    <div className="min-h-screen bg-black text-white p-8">
       <div className="max-w-[1400px] mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Club Five Health ROI Calculator
-          </h1>
-          <p className="text-gray-600">
-            Analyze the optimal treatment protocol and membership recommendation
-            for your patients.
-          </p>
-          <p className="text-gray-600">
-            Create personalized care plans based on individual patient needs and
-            optimize their health journey across our three-phase system.
-          </p>
-          <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-sm text-yellow-800 font-medium">
-              <strong>NOTE TO USE:</strong> Do not go under 4 weeks for each
-              phase - ideal total to 48 weeks
-            </p>
+        <div className="text-center mb-12">
+          <div className="mb-6">
+            <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
+              Club Five Health
+            </h1>
+            <h2 className="text-3xl font-semibold text-[#ADEBB3] mb-2">
+              ROI Calculator
+            </h2>
           </div>
+          <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
+            Analyze the optimal treatment protocol and membership recommendation
+            for your patients. Create personalized care plans based on
+            individual patient needs and optimize their health journey across
+            our three-phase system.
+          </p>
+        </div>
+
+        {/* Note to use */}
+        <div className="mt-8 mb-8 text-center">
+          <p className="text-sm text-orange-300 font-medium">
+            <strong>NOTE TO USE:</strong> Do not go under 4 weeks for each phase
+            - ideal total to 48 weeks
+          </p>
         </div>
 
         {/* All Phases in One Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {/* Phase 1 Calculator */}
           <PhaseCalculator
             title="Phase 1: Relief"
@@ -135,353 +140,355 @@ export default function Home() {
         </div>
 
         {/* Total Sessions Display */}
-        <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div className="bg-[#1a1a1a] rounded-2xl border border-blue-500/20 p-8 mb-12 shadow-2xl">
           <div className="flex justify-between items-center">
-            <span className="text-2xl font-bold text-gray-900">
-              Total Sessions Needed
+            <span className="text-2xl font-bold text-white">
+              Total Sessions Needed:
             </span>
-            <span className="text-3xl font-bold text-blue-600">
+            <span className="text-4xl font-bold text-blue-500">
               {totalSessions}
             </span>
           </div>
         </div>
 
         {/* Recommended Membership Table */}
-        <div className="bg-white rounded-lg shadow-lg p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">
-            Recommended Membership
-          </h2>
-          <div className="overflow-x-auto">
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-gray-50">
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Membership Type
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Downpayment
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Average Session
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Phase 1/mo
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Phase 2/mo
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Phase 3/mo
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Average Monthly
-                  </th>
-                  <th className="border border-gray-300 px-4 py-3 text-left font-bold text-gray-900">
-                    Total Care Plan
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    A La Carte
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $0.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateALaCarteAvgSession(
-                        aLaCarteTotalCarePlan,
-                        totalSessions
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase1Results.aLaCartePerMonth.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase2Results.aLaCartePerMonth.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase3Results.aLaCartePerMonth.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateALaCarteAvgMonthly(
-                        aLaCarteTotalCarePlan,
-                        phaseInputs
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(aLaCarteTotalCarePlan.toFixed(2)).toLocaleString(
-                      "en-US",
-                      {
+        <div className="bg-[#1a1a1a] rounded-2xl border border-[#20B2AA]/20 overflow-hidden shadow-2xl">
+          <div className="bg-[#3A4D3C] text-white px-8 py-4 border-b border-[#20B2AA]/20">
+            <h2 className="text-3xl font-bold">Recommended Membership</h2>
+          </div>
+          <div className="p-8">
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="bg-[#262626]">
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Membership Type
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Downpayment
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Average Session
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Phase 1/mo
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Phase 2/mo
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Phase 3/mo
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Average Monthly
+                    </th>
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                      Total Care Plan
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="hover:bg-[#262626]/50 transition-colors">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      A La Carte
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $0.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculateALaCarteAvgSession(
+                          aLaCarteTotalCarePlan,
+                          totalSessions
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
                         minimumFractionDigits: 2,
                         maximumFractionDigits: 2,
-                      }
-                    )}
-                  </td>
-                </tr>
-                <tr
-                  className={`hover:bg-gray-50 ${
-                    shouldHighlightSignature
-                      ? "bg-blue-50 border-l-4 border-l-blue-500"
-                      : ""
-                  }`}
-                >
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900 font-medium">
-                    Signature
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $2,500.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateSignatureAvgSession(
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase1Results.aLaCartePerMonth.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase2Results.aLaCartePerMonth.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase3Results.aLaCartePerMonth.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculateALaCarteAvgMonthly(
+                          aLaCarteTotalCarePlan,
+                          phaseInputs
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(aLaCarteTotalCarePlan.toFixed(2)).toLocaleString(
+                        "en-US",
+                        {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                        }
+                      )}
+                    </td>
+                  </tr>
+                  <tr
+                    className={`transition-colors ${
+                      shouldHighlightSignature
+                        ? "bg-[#ADEBB3]/10 border-l-4 border-l-[#ADEBB3] hover:bg-[#ADEBB3]/20"
+                        : "hover:bg-[#262626]/50"
+                    }`}
+                  >
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-white font-medium">
+                      Signature
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $2,500.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculateSignatureAvgSession(
+                          calculateSignatureTotalCarePlan(
+                            phase1Results,
+                            phase2Results,
+                            phase3Results,
+                            phaseInputs
+                          ),
+                          totalSessions
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase1Results.signatureMonthly.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase2Results.signatureMonthly.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase3Results.signatureMonthly.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculateSignatureAvgMonthly(
+                          calculateSignatureTotalCarePlan(
+                            phase1Results,
+                            phase2Results,
+                            phase3Results,
+                            phaseInputs
+                          ),
+                          phaseInputs
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
                         calculateSignatureTotalCarePlan(
                           phase1Results,
                           phase2Results,
                           phase3Results,
                           phaseInputs
-                        ),
-                        totalSessions
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase1Results.signatureMonthly.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase2Results.signatureMonthly.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase3Results.signatureMonthly.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateSignatureAvgMonthly(
-                        calculateSignatureTotalCarePlan(
-                          phase1Results,
-                          phase2Results,
-                          phase3Results,
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                  </tr>
+                  <tr
+                    className={`transition-colors ${
+                      shouldHighlightElite
+                        ? "bg-[#ADEBB3]/10 border-l-4 border-l-[#ADEBB3] hover:bg-[#ADEBB3]/20"
+                        : "hover:bg-[#262626]/50"
+                    }`}
+                  >
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-white font-medium">
+                      Elite
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $8,400.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculateEliteAvgSession(
+                          calculateEliteTotalCarePlan(
+                            phase1Results,
+                            phase2Results,
+                            phase3Results,
+                            phaseInputs
+                          ),
+                          totalSessions
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase1Results.eliteMonthly.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase2Results.eliteMonthly.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        phase3Results.eliteMonthly.toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculateEliteAvgMonthly(
+                          calculateEliteTotalCarePlan(
+                            phase1Results,
+                            phase2Results,
+                            phase3Results,
+                            phaseInputs
+                          ),
                           phaseInputs
-                        ),
-                        phaseInputs
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateSignatureTotalCarePlan(
-                        phase1Results,
-                        phase2Results,
-                        phase3Results,
-                        phaseInputs
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                </tr>
-                <tr
-                  className={`hover:bg-gray-50 ${
-                    shouldHighlightElite
-                      ? "bg-green-50 border-l-4 border-l-green-500"
-                      : ""
-                  }`}
-                >
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900 font-medium">
-                    Elite
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $8,400.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateEliteAvgSession(
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
                         calculateEliteTotalCarePlan(
                           phase1Results,
                           phase2Results,
                           phase3Results,
                           phaseInputs
-                        ),
-                        totalSessions
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase1Results.eliteMonthly.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase2Results.eliteMonthly.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      phase3Results.eliteMonthly.toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateEliteAvgMonthly(
-                        calculateEliteTotalCarePlan(
-                          phase1Results,
-                          phase2Results,
-                          phase3Results,
-                          phaseInputs
-                        ),
-                        phaseInputs
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculateEliteTotalCarePlan(
-                        phase1Results,
-                        phase2Results,
-                        phase3Results,
-                        phaseInputs
-                      ).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    Platinum
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $42,000.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculatePlatinumAvgSession(totalSessions).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $0.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $0.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $0.00
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $
-                    {Number(
-                      calculatePlatinumAvgMonthly(phaseInputs).toFixed(2)
-                    ).toLocaleString("en-US", {
-                      minimumFractionDigits: 2,
-                      maximumFractionDigits: 2,
-                    })}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-gray-900">
-                    $42,000.00
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                        ).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                  </tr>
+                  <tr className="hover:bg-[#262626]/50 transition-colors">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      Platinum
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $42,000.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculatePlatinumAvgSession(totalSessions).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $0.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $0.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $0.00
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $
+                      {Number(
+                        calculatePlatinumAvgMonthly(phaseInputs).toFixed(2)
+                      ).toLocaleString("en-US", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2,
+                      })}
+                    </td>
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                      $42,000.00
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
         {/* Footer Disclaimer */}
-        <div className="mt-8 p-6 bg-gray-100 rounded-lg">
-          <p className="text-sm text-gray-700 leading-relaxed">
-            <strong>Disclaimer:</strong> The results provided by the Club Five
-            Care Plan Calculator are for illustrative purposes only and should
-            not be interpreted as a finalized treatment plan. Actual session
-            counts, modalities, and care recommendations may vary based on your
-            specific needs, medical history, and the personalized guidance of
-            your provider. All care plans at Club Five Health are tailored
-            individually following a comprehensive evaluation.
+        <div className="mt-12">
+          <div className="w-full h-px bg-gray-600 mb-8"></div>
+          <p className="text-gray-400 text-sm leading-relaxed text-center max-w-4xl mx-auto">
+            Disclaimer: Projections are for illustration purposes based on
+            typical usage patterns and billing rates. Actual results will vary
+            based on individual practice factors, patient volume, billing
+            practices, and other variables. Past performance does not indicate
+            future results. Consult with your financial advisor regarding tax
+            implications.
           </p>
         </div>
       </div>
