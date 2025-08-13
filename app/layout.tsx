@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Club Five ROI Calculator",
   description: "Calculate ROI for Club Five",
+  authors: [
+    { name: "Mark Anthony Navarro", url: "https://github.com/markee2301" },
+  ],
   icons: {
     icon: "/Club Five Logo.svg",
     shortcut: "/Club Five Logo.svg",
