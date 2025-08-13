@@ -80,8 +80,9 @@ export default function Home() {
     phaseInputs.phase3.weeksInCarePlan;
 
   // Determine which membership to highlight based on total weeks
-  const shouldHighlightSignature = totalWeeks > 0 && totalWeeks < 60;
-  const shouldHighlightElite = totalWeeks >= 60;
+  const shouldHighlightALaCarte = totalWeeks > 0 && totalWeeks < 24;
+  const shouldHighlightSignature = totalWeeks >= 24 && totalWeeks <= 60;
+  const shouldHighlightElite = totalWeeks >= 61;
 
   return (
     <div className="min-h-screen bg-black text-white p-8">
@@ -188,7 +189,13 @@ export default function Home() {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="hover:bg-[#262626]/50 transition-colors">
+                  <tr
+                    className={`transition-colors ${
+                      shouldHighlightALaCarte
+                        ? "bg-[#ADEBB3]/10 border-l-4 border-l-[#ADEBB3] hover:bg-[#ADEBB3]/20"
+                        : "hover:bg-[#262626]/50"
+                    }`}
+                  >
                     <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
                       A La Carte
                     </td>
