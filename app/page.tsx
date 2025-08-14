@@ -79,10 +79,10 @@ export default function Home() {
     phaseInputs.phase2.weeksInCarePlan +
     phaseInputs.phase3.weeksInCarePlan;
 
-  // Determine which membership to highlight based on total weeks
-  const shouldHighlightALaCarte = totalWeeks > 0 && totalWeeks < 24;
-  const shouldHighlightSignature = totalWeeks >= 24 && totalWeeks <= 60;
-  const shouldHighlightElite = totalWeeks >= 61;
+  // Determine which membership to highlight based on total sessions needed
+  const shouldHighlightALaCarte = totalSessions > 0 && totalSessions < 24;
+  const shouldHighlightSignature = totalSessions >= 24 && totalSessions <= 60;
+  const shouldHighlightElite = totalSessions >= 61;
 
   return (
     <div className="min-h-screen bg-black text-white p-8">

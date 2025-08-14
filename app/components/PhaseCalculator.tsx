@@ -89,6 +89,8 @@ export default function PhaseCalculator({
                 className="w-full px-4 py-3 border border-[#20B2AA]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#20B2AA] focus:border-transparent text-white bg-[#1a1a1a] transition-all"
               >
                 <option value="">Select frequency</option>
+                <option value={0.25}>Once a month</option>
+                <option value={0.5}>Biweekly</option>
                 <option value={1}>1 session per week</option>
                 <option value={2}>2 sessions per week</option>
                 <option value={3}>3 sessions per week</option>
