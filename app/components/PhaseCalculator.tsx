@@ -110,12 +110,24 @@ export default function PhaseCalculator({
                 value={weeksInCarePlan}
                 onChange={(e) => {
                   const value = e.target.value;
-                  // Only allow positive integers
+                  // Only allow positive integers (no decimals, no negatives, no non-numeric)
                   if (
                     value === "" ||
-                    (Number.isInteger(Number(value)) && Number(value) > 0)
+                    (/^\d+$/.test(value) && Number(value) > 0)
                   ) {
                     setWeeksInCarePlan(value);
+                  }
+                }}
+                onKeyDown={(e) => {
+                  // Prevent decimal point, minus sign, and other non-numeric characters
+                  if (
+                    e.key === "." ||
+                    e.key === "-" ||
+                    e.key === "e" ||
+                    e.key === "E" ||
+                    e.key === "+"
+                  ) {
+                    e.preventDefault();
                   }
                 }}
                 className="w-full px-4 py-3 border border-[#20B2AA]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#20B2AA] focus:border-transparent text-white bg-[#1a1a1a] transition-all"
@@ -140,7 +152,7 @@ export default function PhaseCalculator({
               </div>
             </div>
 
-            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20">
+            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20 hidden">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-gray-300">À la Carte/mo</span>
                 <span className="text-lg font-semibold text-green-400">
@@ -149,7 +161,7 @@ export default function PhaseCalculator({
               </div>
             </div>
 
-            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20">
+            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20 hidden">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-gray-300">
                   Signature Monthly
@@ -160,7 +172,7 @@ export default function PhaseCalculator({
               </div>
             </div>
 
-            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20">
+            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20 hidden">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-gray-300">Elite Monthly</span>
                 <span className="text-lg font-semibold text-green-400">
@@ -169,7 +181,7 @@ export default function PhaseCalculator({
               </div>
             </div>
 
-            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20">
+            <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20 hidden">
               <div className="flex justify-between items-center">
                 <span className="font-bold text-gray-300">Platinum Total</span>
                 <span className="text-lg font-semibold text-green-400">

@@ -79,10 +79,41 @@ export default function Home() {
     phaseInputs.phase2.weeksInCarePlan +
     phaseInputs.phase3.weeksInCarePlan;
 
-  // Determine which membership to highlight based on total sessions needed
-  const shouldHighlightALaCarte = totalSessions > 0 && totalSessions < 24;
-  const shouldHighlightSignature = totalSessions >= 24 && totalSessions <= 60;
-  const shouldHighlightElite = totalSessions >= 61;
+  // Calculate total care plan values for each membership
+  const signatureTotalCarePlan = calculateSignatureTotalCarePlan(
+    phase1Results,
+    phase2Results,
+    phase3Results,
+    phaseInputs
+  );
+  const eliteTotalCarePlan = calculateEliteTotalCarePlan(
+    phase1Results,
+    phase2Results,
+    phase3Results,
+    phaseInputs
+  );
+  const platinumTotalCarePlan = 42000;
+
+  // Find the lowest total care plan value
+  const carePlanValues = [
+    { type: "aLaCarte", value: aLaCarteTotalCarePlan },
+    { type: "signature", value: signatureTotalCarePlan },
+    { type: "elite", value: eliteTotalCarePlan },
+    { type: "platinum", value: platinumTotalCarePlan },
+  ].filter((item) => item.value > 0); // Only consider memberships with positive values
+
+  const lowestCarePlan =
+    carePlanValues.length > 0
+      ? carePlanValues.reduce((min, current) =>
+          current.value < min.value ? current : min
+        )
+      : null;
+
+  // Determine which membership to highlight based on lowest total care plan
+  const shouldHighlightALaCarte = lowestCarePlan?.type === "aLaCarte";
+  const shouldHighlightSignature = lowestCarePlan?.type === "signature";
+  const shouldHighlightElite = lowestCarePlan?.type === "elite";
+  const shouldHighlightPlatinum = lowestCarePlan?.type === "platinum";
 
   return (
     <div className="min-h-screen bg-black text-white p-8">
@@ -171,13 +202,13 @@ export default function Home() {
                     <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
                       Average Session
                     </th>
-                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white hidden">
                       Phase 1/mo
                     </th>
-                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white hidden">
                       Phase 2/mo
                     </th>
-                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
+                    <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white hidden">
                       Phase 3/mo
                     </th>
                     <th className="border border-[#20B2AA]/20 px-6 py-4 text-left font-bold text-white">
@@ -214,7 +245,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase1Results.aLaCartePerMonth.toFixed(2)
@@ -223,7 +254,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase2Results.aLaCartePerMonth.toFixed(2)
@@ -232,7 +263,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase3Results.aLaCartePerMonth.toFixed(2)
@@ -294,7 +325,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase1Results.signatureMonthly.toFixed(2)
@@ -303,7 +334,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase2Results.signatureMonthly.toFixed(2)
@@ -312,7 +343,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase3Results.signatureMonthly.toFixed(2)
@@ -383,7 +414,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase1Results.eliteMonthly.toFixed(2)
@@ -392,7 +423,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase2Results.eliteMonthly.toFixed(2)
@@ -401,7 +432,7 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $
                       {Number(
                         phase3Results.eliteMonthly.toFixed(2)
@@ -442,7 +473,13 @@ export default function Home() {
                       })}
                     </td>
                   </tr>
-                  <tr className="hover:bg-[#262626]/50 transition-colors">
+                  <tr
+                    className={`transition-colors ${
+                      shouldHighlightPlatinum
+                        ? "bg-[#ADEBB3]/10 border-l-4 border-l-[#ADEBB3] hover:bg-[#ADEBB3]/20"
+                        : "hover:bg-[#262626]/50"
+                    }`}
+                  >
                     <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
                       Platinum
                     </td>
@@ -458,13 +495,13 @@ export default function Home() {
                         maximumFractionDigits: 2,
                       })}
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $0.00
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $0.00
                     </td>
-                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
+                    <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300 hidden">
                       $0.00
                     </td>
                     <td className="border border-[#20B2AA]/20 px-6 py-4 text-gray-300">
