@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Club Five ROI Calculator",
-  description: "Calculate ROI for Club Five",
+  title: "Club Five Calculator",
+  description: "Calculate Recommended Membership for Club Five",
   authors: [
     { name: "Mark Anthony Navarro", url: "https://github.com/markee2301" },
   ],

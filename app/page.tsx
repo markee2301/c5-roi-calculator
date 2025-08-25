@@ -122,11 +122,8 @@ export default function Home() {
         <div className="text-center mb-12">
           <div className="mb-6">
             <h1 className="text-5xl font-bold text-white mb-4 tracking-tight">
-              Club Five Health
+              Club Five Health Calculator
             </h1>
-            <h2 className="text-3xl font-semibold text-[#ADEBB3] mb-2">
-              ROI Calculator
-            </h2>
           </div>
           <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
             Analyze the optimal treatment protocol and membership recommendation
