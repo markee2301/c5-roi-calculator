@@ -14,7 +14,7 @@ export interface CalculatorOutputs {
 export function calculatePhase1(inputs: CalculatorInputs): CalculatorOutputs {
   const { frequencyPerWeek: frequencyPerMonth, weeksInCarePlan } = inputs;
 
-  const months = weeksInCarePlan / 4;
+  const months = weeksInCarePlan;
   const sessionsNeeded = frequencyPerMonth * months;
 
   const aLaCartePerMonth = months > 0 ? (sessionsNeeded * 250) / months : 0;
@@ -41,7 +41,7 @@ export function calculatePhase1(inputs: CalculatorInputs): CalculatorOutputs {
 export function calculatePhase2(inputs: CalculatorInputs): CalculatorOutputs {
   const { frequencyPerWeek: frequencyPerMonth, weeksInCarePlan } = inputs;
 
-  const months = weeksInCarePlan / 4;
+  const months = weeksInCarePlan;
   const sessionsNeeded = frequencyPerMonth * months;
 
   const aLaCartePerMonth =
@@ -68,7 +68,7 @@ export function calculatePhase2(inputs: CalculatorInputs): CalculatorOutputs {
 export function calculatePhase3(inputs: CalculatorInputs): CalculatorOutputs {
   const { frequencyPerWeek: frequencyPerMonth, weeksInCarePlan } = inputs;
 
-  const months = weeksInCarePlan / 4;
+  const months = weeksInCarePlan;
   const sessionsNeeded = frequencyPerMonth * months;
   const aLaCartePerMonth =
     weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
