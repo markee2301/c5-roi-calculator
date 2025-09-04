@@ -108,7 +108,7 @@ export default function PhaseCalculator({
 
             <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20">
               <label className="block text-sm font-bold text-white mb-2">
-                Weeks in care plan
+                Months in care plan
               </label>
               <input
                 type="number"
