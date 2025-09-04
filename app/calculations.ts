@@ -12,18 +12,19 @@ export interface CalculatorOutputs {
 }
 
 export function calculatePhase1(inputs: CalculatorInputs): CalculatorOutputs {
-  const { frequencyPerWeek, weeksInCarePlan } = inputs;
+  const { frequencyPerWeek: frequencyPerMonth, weeksInCarePlan } = inputs;
 
-  const sessionsNeeded = frequencyPerWeek * weeksInCarePlan;
-  const aLaCartePerMonth =
-    weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
+  const months = weeksInCarePlan / 4;
+  const sessionsNeeded = frequencyPerMonth * months;
+
+  const aLaCartePerMonth = months > 0 ? (sessionsNeeded * 250) / months : 0;
   const signatureMonthly = Math.max(
     0,
-    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 1) * 150 : 0
+    months > 0 ? (sessionsNeeded / months - 1) * 150 : 0
   );
   const eliteMonthly = Math.max(
     0,
-    weeksInCarePlan > 0 ? (sessionsNeeded / (weeksInCarePlan / 4) - 5) * 150 : 0
+    months > 0 ? (sessionsNeeded / months - 5) * 150 : 0
   );
   const platinumTotal = 42000; // Static value
 
@@ -36,10 +37,13 @@ export function calculatePhase1(inputs: CalculatorInputs): CalculatorOutputs {
   };
 }
 
-export function calculatePhase2(inputs: CalculatorInputs): CalculatorOutputs {
-  const { frequencyPerWeek, weeksInCarePlan } = inputs;
 
-  const sessionsNeeded = frequencyPerWeek * weeksInCarePlan;
+export function calculatePhase2(inputs: CalculatorInputs): CalculatorOutputs {
+  const { frequencyPerWeek: frequencyPerMonth, weeksInCarePlan } = inputs;
+
+  const months = weeksInCarePlan / 4;
+  const sessionsNeeded = frequencyPerMonth * months;
+
   const aLaCartePerMonth =
     weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
   const signatureMonthly = Math.max(
@@ -62,9 +66,10 @@ export function calculatePhase2(inputs: CalculatorInputs): CalculatorOutputs {
 }
 
 export function calculatePhase3(inputs: CalculatorInputs): CalculatorOutputs {
-  const { frequencyPerWeek, weeksInCarePlan } = inputs;
+  const { frequencyPerWeek: frequencyPerMonth, weeksInCarePlan } = inputs;
 
-  const sessionsNeeded = frequencyPerWeek * weeksInCarePlan;
+  const months = weeksInCarePlan / 4;
+  const sessionsNeeded = frequencyPerMonth * months;
   const aLaCartePerMonth =
     weeksInCarePlan > 0 ? (sessionsNeeded * 250) / (weeksInCarePlan / 4) : 0;
   const signatureMonthly = Math.max(

@@ -39,15 +39,15 @@ export default function PhaseCalculator({
   const results =
     phaseNumber === 1
       ? calculatePhase1({
-          frequencyPerWeek: frequency,
-          weeksInCarePlan: weeks,
-        })
+        frequencyPerWeek: frequency,
+        weeksInCarePlan: weeks,
+      })
       : phaseNumber === 2
-      ? calculatePhase2({
+        ? calculatePhase2({
           frequencyPerWeek: frequency,
           weeksInCarePlan: weeks,
         })
-      : calculatePhase3({
+        : calculatePhase3({
           frequencyPerWeek: frequency,
           weeksInCarePlan: weeks,
         });
@@ -81,7 +81,7 @@ export default function PhaseCalculator({
           <div className="space-y-4">
             <div className="bg-[#262626] p-4 rounded-xl border border-[#20B2AA]/20">
               <label className="block text-sm font-bold text-white mb-2">
-                Frequency per week
+                Frequency per month
               </label>
               <select
                 value={frequencyPerWeek}
@@ -89,16 +89,20 @@ export default function PhaseCalculator({
                 className="w-full px-4 py-3 border border-[#20B2AA]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#20B2AA] focus:border-transparent text-white bg-[#1a1a1a] transition-all"
               >
                 <option value="">Select frequency</option>
-                <option value={0.25}>Once a month</option>
-                <option value={0.5}>2 times a month</option>
-                <option value={1}>3 times a month</option>
-                <option value={2}>4 times a month</option>
-                <option value={3}>5 times a month</option>
-                <option value={4}>6 times a month</option>
-                <option value={5}>7 times a month</option>
-                <option value={6}>8 times a month</option>
-                <option value={7}>9 times a month</option>
-                <option value={7}>10 times a month</option>
+                {[...Array(10)].map((_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1} time{i > 0 ? "s" : ""} per month
+                  </option>
+                ))}
+                {/* <option value={0.25}>Once a month</option>
+                <option value={0.5}>Biweekly</option>
+                <option value={1}>1 session per week</option>
+                <option value={2}>2 sessions per week</option>
+                <option value={3}>3 sessions per week</option>
+                <option value={4}>4 sessions per week</option>
+                <option value={5}>5 sessions per week</option>
+                <option value={6}>6 sessions per week</option>
+                <option value={7}>7 sessions per week</option> */}
               </select>
             </div>
 
