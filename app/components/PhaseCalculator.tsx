@@ -90,14 +90,15 @@ export default function PhaseCalculator({
               >
                 <option value="">Select frequency</option>
                 <option value={0.25}>Once a month</option>
-                <option value={0.5}>Biweekly</option>
-                <option value={1}>1 session per week</option>
-                <option value={2}>2 sessions per week</option>
-                <option value={3}>3 sessions per week</option>
-                <option value={4}>4 sessions per week</option>
-                <option value={5}>5 sessions per week</option>
-                <option value={6}>6 sessions per week</option>
-                <option value={7}>7 sessions per week</option>
+                <option value={0.5}>2 times a month</option>
+                <option value={1}>3 times a month</option>
+                <option value={2}>4 times a month</option>
+                <option value={3}>5 times a month</option>
+                <option value={4}>6 times a month</option>
+                <option value={5}>7 times a month</option>
+                <option value={6}>8 times a month</option>
+                <option value={7}>9 times a month</option>
+                <option value={7}>10 times a month</option>
               </select>
             </div>
 
