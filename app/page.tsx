@@ -134,12 +134,12 @@ export default function Home() {
         </div>
 
         {/* Note to use */}
-        <div className="mt-8 mb-8 text-center">
+        {/* <div className="mt-8 mb-8 text-center">
           <p className="text-sm text-orange-300 font-medium">
             <strong>NOTE TO USE:</strong> Do not go under 4 weeks for each phase
             - ideal total to 48 weeks
           </p>
-        </div>
+        </div> */}
 
         {/* All Phases in One Row */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
