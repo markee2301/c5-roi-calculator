@@ -87,9 +87,9 @@ export function calculateSignatureTotalCarePlan(
 
   return (
     2500 +
-    (phase1Results.signatureMonthly / 4) * phaseInputs.phase1.weeksInCarePlan +
-    (phase2Results.signatureMonthly / 4) * phaseInputs.phase2.weeksInCarePlan +
-    (phase3Results.signatureMonthly / 4) * phaseInputs.phase3.weeksInCarePlan
+    phase1Results.signatureMonthly  * phaseInputs.phase1.weeksInCarePlan +
+    phase2Results.signatureMonthly  * phaseInputs.phase2.weeksInCarePlan +
+    phase3Results.signatureMonthly  * phaseInputs.phase3.weeksInCarePlan
   );
 }
 
@@ -131,9 +131,9 @@ export function calculateEliteTotalCarePlan(
 
   return (
     8400 +
-    (phase1Results.eliteMonthly / 4) * phaseInputs.phase1.weeksInCarePlan +
-    (phase2Results.eliteMonthly / 4) * phaseInputs.phase2.weeksInCarePlan +
-    (phase3Results.eliteMonthly / 4) * phaseInputs.phase3.weeksInCarePlan
+    phase1Results.eliteMonthly  * phaseInputs.phase1.weeksInCarePlan +
+    phase2Results.eliteMonthly  * phaseInputs.phase2.weeksInCarePlan +
+    phase3Results.eliteMonthly  * phaseInputs.phase3.weeksInCarePlan
   );
 }
 

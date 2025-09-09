@@ -139,7 +139,7 @@ export default function PhaseCalculator({
                 min="1"
                 max="52"
                 step="1"
-                placeholder="Enter weeks"
+                placeholder="Enter months"
               />
             </div>
           </div>
