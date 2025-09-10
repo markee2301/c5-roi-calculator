@@ -169,7 +169,7 @@ export function calculatePlatinumAvgMonthly(phaseInputs: any) {
 
   if (totalWeeks === 0) return 0;
 
-  return platinumTotalCarePlan / totalWeeks;
+  return (platinumTotalCarePlan - 42000 ) / totalWeeks;
 }
 
 export function calculatePlatinumAvgSession(totalSessions: number) {
