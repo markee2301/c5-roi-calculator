@@ -60,7 +60,7 @@ export function calculateALaCarteAvgMonthly(
 
   if (totalWeeks === 0) return 0;
 
-  return (aLaCarteTotalCarePlan - 0) / (totalWeeks / 4);
+  return (aLaCarteTotalCarePlan - 0) / totalWeeks;
 }
 
 export function calculateALaCarteAvgSession(
@@ -104,7 +104,7 @@ export function calculateSignatureAvgMonthly(
 
   if (totalWeeks === 0) return 0;
 
-  return (signatureTotalCarePlan - 2500) / (totalWeeks / 4);
+  return (signatureTotalCarePlan - 2500) / totalWeeks;
 }
 
 export function calculateSignatureAvgSession(
@@ -148,7 +148,7 @@ export function calculateEliteAvgMonthly(
 
   if (totalWeeks === 0) return 0;
 
-  return (eliteTotalCarePlan - 8400) / (totalWeeks / 4);
+  return (eliteTotalCarePlan - 8400) / totalWeeks;
 }
 
 export function calculateEliteAvgSession(
@@ -169,7 +169,7 @@ export function calculatePlatinumAvgMonthly(phaseInputs: any) {
 
   if (totalWeeks === 0) return 0;
 
-  return (platinumTotalCarePlan - 42000) / (totalWeeks / 4);
+  return platinumTotalCarePlan / totalWeeks;
 }
 
 export function calculatePlatinumAvgSession(totalSessions: number) {
