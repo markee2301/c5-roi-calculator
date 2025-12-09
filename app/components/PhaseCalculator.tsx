@@ -89,7 +89,7 @@ export default function PhaseCalculator({
                 className="w-full px-4 py-3 border border-[#20B2AA]/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#20B2AA] focus:border-transparent text-white bg-[#1a1a1a] transition-all"
               >
                 <option value="">Select frequency</option>
-                {[...Array(10)].map((_, i) => (
+                {[...Array(30)].map((_, i) => (
                   <option key={i + 1} value={i + 1}>
                     {i + 1} time{i > 0 ? "s" : ""} per month
                   </option>
